@@ -15,6 +15,7 @@ services:
       timeout: 5s
       retries: 5
   marzban:
+    container_name: marzban-dev
     build:
       context: .
       dockerfile: Dockerfile
