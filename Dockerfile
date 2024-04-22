@@ -11,7 +11,7 @@ RUN apt-get update \
 RUN bash -c "$(curl -L https://github.com/Gozargah/Marzban-scripts/raw/master/install_latest_xray.sh)" @ v1.8.8
 
 COPY ./requirements.txt /code/
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+RUN pip install --upgrade -r /code/requirements.txt
 
 COPY . /code
 
