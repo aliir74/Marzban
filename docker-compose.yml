@@ -22,8 +22,5 @@ services:
     restart: always
     env_file: .env
     network_mode: host
-    depends_on:
-      postgres:
-        condition: service_healthy
     volumes:
       - /var/lib/marzban:/var/lib/marzban
