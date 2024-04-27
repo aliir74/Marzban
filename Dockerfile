@@ -8,7 +8,7 @@ RUN apt-get update \
     && apt-get install -y curl unzip gcc python3-dev default-libmysqlclient-dev build-essential pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
-RUN bash -c "$(curl -L https://github.com/Gozargah/Marzban-scripts/raw/master/install_latest_xray.sh)" @ v1.8.8
+RUN bash -c "$(curl -L https://github.com/Gozargah/Marzban-scripts/raw/master/install_latest_xray.sh)" @ install
 
 COPY ./requirements.txt /code/
 RUN pip install --upgrade -r /code/requirements.txt
