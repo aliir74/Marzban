@@ -7,6 +7,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
       - MYSQL_DATABASE=$MYSQL_DATABASE
+    network_mode: host
     volumes:
       - /var/lib/mysql:/var/lib/mysql
   marzban:
