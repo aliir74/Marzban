@@ -1,25 +1,22 @@
 services:
-  # postgres:
-  #   image: postgres:13-alpine
-  #   restart: always
-  #   network_mode: host
-  #   environment:
-  #     POSTGRES_DB: $POSTGRES_DB
-  #     POSTGRES_USER: $POSTGRES_USER
-  #     POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-  #   volumes:
-  #     - /var/lib/postgresql:/var/lib/postgresql
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 5
+  db:
+    image: mysql:latest
+    container_name: mysql-dev
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
   marzban:
     container_name: marzban-dev
     build:
       context: .
       dockerfile: Dockerfile
     restart: always
+    environment:
+      - SQLALCHEMY_DATABASE_URL=mysql://root:${MYSQL_ROOT_PASSWORD}@db:3306/${MYSQL_DATABASE}
     env_file: .env
     network_mode: host
     volumes:
